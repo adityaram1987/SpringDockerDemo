@@ -1,11 +1,10 @@
-FROM maven:3.5-jdk-8
+    
+FROM java:8
 
-RUN mkdir -p /deploy/application
+VOLUME /tmp
 
-VOLUME ["/deploy/application"]
+EXPOSE 8888
 
-WORKDIR /deploy/application
+ADD target/spring-boot-react-docker-demo-0.0.1-SNAPSHOT.jar spring-boot-react-docker-demo-0.0.1-SNAPSHOT.jar
 
-ADD . .
-
-ENTRYPOINT ["mvn","clean","package"]
+ENTRYPOINT ["java","-jar","spring-boot-react-docker-demo-0.0.1-SNAPSHOT"]
